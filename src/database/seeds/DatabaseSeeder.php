@@ -12,5 +12,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UserSeeder::class);
+        \App\User::create([
+            'name'=>'ohtsubo',
+            'email'=>'ohtsubo@test.com',
+            'password'=>bcrypt('password')
+        ]);
+
+        \Artisan::call('passport:client --password');
     }
 }
