@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Passport\Passport;
+use Illuminate\Auth\Access\Response;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -30,5 +31,11 @@ class AuthServiceProvider extends ServiceProvider
         Passport::routes(function($router){
             $router->forAccessTokens();
         },['prefix'=>'api/oauth']);
+
+        Gate::define('role-only',function($user){
+            return $user->role=="role"
+                ? Response::allow()
+                : Response::deny('You don\'t have a permission.',403);
+        });
     }
 }

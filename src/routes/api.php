@@ -22,7 +22,7 @@ Route::post('/no_auth',function(){
     return '{"result":"true"}';
 });
 
-Route::middleware('auth:api')->group(function(){
+Route::middleware(['auth:api','can:role-only'])->group(function(){
     Route::post('/need_auth',function(){
         return '{"result":"true"}';
     });
