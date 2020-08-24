@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
         \App\User::create([
             'name'=>'ohtsubo',
             'email'=>'ohtsubo@test.com',
-            'password'=>bcrypt('password')
+            'password'=>bcrypt('password'),
+            'role'=>'role'
         ]);
 
         \Artisan::call('passport:client --password');
